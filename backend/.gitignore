@@ -43,6 +43,6 @@ package-lock.json
 yarn.lock
 
 # Files tests
-/authcConfig/keysAccess/*.pem
+/authConfig/keysAccess/*.pem
 
 /seed.ts
