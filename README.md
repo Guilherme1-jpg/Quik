@@ -35,7 +35,7 @@
 
     Edite `/.env` conforme necessário.
 
-4. **Inicialize o banco de dados com Prisma:**
+4. **Inicialize o banco de dados com Prisma na pasta backend:**
 
 
     ```bash
@@ -60,9 +60,10 @@ Para autenticação segura, você precisará de um par de chaves privada e públ
     Adicione ambas chaves no diretório keysAccess.
 
 3. **Metodo indicado:**
-    Entre na pasta /backend via console
-       ```node generateKeys.js
-    ```
+    Entre na pasta /backend via console e digite 
+       ```bash
+       node generateKeys.js
+     ```
     será gerado ambas chaves na raiz da pasta,
     Adicione ambas chaves no diretório keysAccess.
 
