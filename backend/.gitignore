@@ -43,6 +43,7 @@ package-lock.json
 yarn.lock
 
 # Files tests
-authConfig/keysAccess/*.pem
-
+private_key2.pem
+public.pem
+public2.pem
 /seed.ts
