@@ -10,7 +10,7 @@
 ## Pré-visualização
 
 - https://drive.google.com/file/d/1NatOJQ7ctaA8VJmIBWJS-6q1_zVoKIOp/view?usp=drive_link
-
+- Obs: Somente o mesmo usuario pode fazer alteração em seu comentário.
 ## Configuração do Ambiente
 
 1. **Clone este repositório.**
