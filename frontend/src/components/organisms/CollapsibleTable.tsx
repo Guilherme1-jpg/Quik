@@ -13,7 +13,6 @@ interface CollapsibleTableProps {
 
 const CollapsibleTable = ({ rows }: CollapsibleTableProps) => {
   const handleEdit = (editedData: any) => {
-    console.log('Editing:', editedData);
   };
 
   return (

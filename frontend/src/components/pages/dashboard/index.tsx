@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react';
-import { useTheme } from '@mui/material';
+import { Button, Select, useTheme, MenuItem } from '@mui/material';
 import axios from 'axios';
 import PostFormMolecule from 'components/organisms/ContentFormOrganism/ContentForm';
 import baseApi from 'api/server';
 import DashboardTemplate from 'components/templates/DashboardTemplate';
 import Cookies from 'js-cookie';
 import PostOrganismAndComments from 'components/organisms/PostAndComments/PostAndComents';
+import CsvExportAtom from 'components/atoms/csvExportAtom';
+import CsvExportMolecule from 'components/molecules/ExportCsvMolecule';
 
 type inputEvent = React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | undefined;
 
@@ -18,6 +20,8 @@ const Dashboard = () => {
   const [userId, setUserId] = React.useState(7);
   const [open, setOpen] = React.useState(false);
   const [posts, setPosts] = React.useState<Post[]>([]);
+  const [generateFullReport, setGenerateFullReport] = React.useState(false);
+  const [showSelect, setShowSelect] = React.useState(false);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -38,7 +42,6 @@ const Dashboard = () => {
         const email  = Cookies.get('username')
         const response = await baseApi.get(`user/search/${email}`)
         setUserId(response.data.user.id);
-        console.log('resp', setUserId)
       } catch (error) {
         console.error('Erro ao buscar userId:', error);
       }
@@ -63,7 +66,6 @@ const Dashboard = () => {
 
     baseApi.post('/posts/new', formData)
       .then(({ data }) => {
-        console.log('Data:', data);
         window.location.reload();
       })
       .catch((error) => {
@@ -94,9 +96,10 @@ const Dashboard = () => {
     setOpen(false);
   };
 
-  const handlePostOrganismAndComments = () => {
-    console.log("Método handlePostOrganismAndComments chamado");
+  const handleReportTypeChange = (event) => {
+    setGenerateFullReport(event.target.value === 'full');
   };
+
 
   const handlePostEdit = async (postId, updatedPost) => {
     try {
@@ -104,7 +107,6 @@ const Dashboard = () => {
       const { data } = response;
   
       if (data) {
-        console.log('Post updated successfully:', data);
         window.location.reload();
       } else {
         console.error('Error updating post: Response data is undefined');
@@ -122,12 +124,16 @@ const Dashboard = () => {
       console.error('Erro ao excluir post:', error);
     }
   };
-  
-  
 
+  const handleButtonClick = () => {
+    setShowSelect(true);
+  };
+  
+  
   return (
     <>
     <DashboardTemplate open={open} handleDrawerOpen={handleDrawerOpen} handleDrawerClose={handleDrawerClose}/ >
+    <CsvExportMolecule data={posts} filename="relatorio.csv" fullReport={generateFullReport}/>
     <PostFormMolecule
       onSubmit={handleSubmit}
       onTitleChange={handleTitleChange}

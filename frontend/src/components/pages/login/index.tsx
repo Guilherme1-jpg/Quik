@@ -9,6 +9,7 @@ import Cookies from 'js-cookie';
 import { useNavigate, useLocation } from 'react-router-dom';
 import ButtonAtom from 'components/atoms/ButtonAtom';
 import { Link } from 'react-router-dom';
+import baseApi from 'api/server';
 
 type inputEvent = React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | undefined;
 
@@ -34,7 +35,7 @@ function Login() {
 
   const handleSubmit = useCallback((event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    axios.post<AuthProps>('http://localhost:3002/auth/login', {
+    baseApi.post<AuthProps>('/auth/login', {
       email,
       password,
     })

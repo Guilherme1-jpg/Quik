@@ -34,7 +34,6 @@ const PostOrganismAndComments: React.FC<PostProps> = ({ post, onDelete, onEdit, 
         const email  = Cookies.get('username')
         const response = await baseApi.get(`user/search/${email}`)
         setUserId(response.data.user.id);
-        console.log('resp', setUserId)
       } catch (error) {
         console.error('Erro ao buscar userId:', error);
       }
@@ -118,9 +117,7 @@ const PostOrganismAndComments: React.FC<PostProps> = ({ post, onDelete, onEdit, 
 
   const handleDeleteComment = async (commentId: number) => {
     try {
-      await baseApi.delete(`comments/delete/${commentId}`);
-      console.log('Comentário excluído com sucesso!');
-     
+      await baseApi.delete(`comments/delete/${commentId}`);     
     } catch (error) {
       console.error('Erro ao excluir comentário:', error);
     }
@@ -132,7 +129,6 @@ const PostOrganismAndComments: React.FC<PostProps> = ({ post, onDelete, onEdit, 
       const commentData = { userId, postId, description: newComment };
 
       const response = await baseApi.post('comments/new', commentData);
-      console.log('Novo comentário adicionado:', response.data);
       window.location.reload();
     } catch (error) {
       console.error('Erro ao adicionar comentário:', error);
@@ -141,13 +137,12 @@ const PostOrganismAndComments: React.FC<PostProps> = ({ post, onDelete, onEdit, 
 
   const findCommentById = (commentId: number) => {
     const foundComment = post._comments.find(comment => comment.id === commentId);
-    console.log('Comentário encontrado:', foundComment);
     return foundComment;
   };
 
 
   return (
-    <Paper elevation={3} style={{ margin: '16px', padding: '16px' }}>
+    <Paper elevation={3} style={{ margin: '160px', padding: '16px'}}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         {isEditingPost ? (
           <div>
@@ -167,6 +162,7 @@ const PostOrganismAndComments: React.FC<PostProps> = ({ post, onDelete, onEdit, 
               value={editedPost.description}
               onChange={(e) => setEditedPost({ ...editedPost, description: e.target.value })}
             />
+            
             <Button onClick={handleSavePostEdit} color="primary">
               Salvar
             </Button>
@@ -180,6 +176,16 @@ const PostOrganismAndComments: React.FC<PostProps> = ({ post, onDelete, onEdit, 
             <Typography variant="body1">{post.props.description}</Typography>
           </div>
         )}
+
+        {post.props.image && (
+          <img src={`data:image/png;base64, ${post.props.image}`} alt="image" style={{
+            maxWidth: '100%',
+            height: 'auto',
+            maxHeight: '150px',
+            marginBottom: '8px',
+          }} />
+        )}
+  
         <IconButton edge="end" onClick={handleEditPost}>
           <EditIcon />
         </IconButton>
