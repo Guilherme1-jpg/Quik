@@ -4,7 +4,7 @@ import { readFileSync } from 'fs';
 import { resolve } from 'path';
 
 const encrypt = (toEncrypt: string): string => {
-  const absolutePath = resolve('src/authConfig/keysAccess/public_key2.pem');
+  const absolutePath = resolve('src/authConfig/keysAccess/public_key.pem');
   const publicKey = readFileSync(absolutePath, 'utf8');
   const buffer = Buffer.from(toEncrypt, 'utf8');
   const encrypted = publicEncrypt(publicKey, buffer);
@@ -13,7 +13,7 @@ const encrypt = (toEncrypt: string): string => {
 };
 
 const decrypt = (toDecrypt: any) => {
-  const absolutePath = resolve('src/authConfig/keysAccess/private_key2.pem');
+  const absolutePath = resolve('src/authConfig/keysAccess/private_key.pem');
   const privateKey = readFileSync(absolutePath, 'utf8');
   const buffer = Buffer.from(toDecrypt, 'base64');
   const decrypted = privateDecrypt(

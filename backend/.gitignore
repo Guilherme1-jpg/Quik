@@ -43,4 +43,6 @@ package-lock.json
 yarn.lock
 
 # Files tests
-private_key.pem
+*.pem
+
+seed.ts

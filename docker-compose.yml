@@ -27,7 +27,6 @@ services:
       
     volumes:
       - './doc/backup:/docker-entrypoint-initdb.d/up.sql'
-      - '/etc/backups/data-postgres/delliv-backend:/var/lib/postgresql/data'
     restart: always
 
   frontend:

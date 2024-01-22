@@ -7,6 +7,10 @@
 - Docker e Docker Compose (para Prisma, se estiver usando um banco de dados Dockerizado)
 - OpenSSL (para gerar chaves PEM)
 
+## Pré-visualização
+
+- https://drive.google.com/file/d/1NatOJQ7ctaA8VJmIBWJS-6q1_zVoKIOp/view?usp=drive_link
+
 ## Configuração do Ambiente
 
 1. **Clone este repositório.**
@@ -17,14 +21,10 @@
 
 2. **Instale as dependências:**
 
+ - Entre na pasta backend e depois frontend
     ```bash
     npm install
     ```
-
-    ou
-
-    ```bash
-    yarn
     ```
 
 3. **Copie o arquivo de exemplo de configuração**
@@ -36,6 +36,7 @@
     Edite `/.env` conforme necessário.
 
 4. **Inicialize o banco de dados com Prisma:**
+
 
     ```bash
     npx prisma db push
@@ -64,19 +65,7 @@ Para autenticação segura, você precisará de um par de chaves privada e públ
     ```
     será gerado ambas chaves na raiz da pasta,
     Adicione ambas chaves no diretório keysAccess.
-## Executando a Aplicação
 
-- **Inicie a aplicação:**
-
-    ```bash
-    npm run start
-    ```
-
-    ou
-
-    ```bash
-    yarn start
-    ```
 
 - Acesse a aplicação em [http://localhost:3000](http://localhost:3000).
 
@@ -86,10 +75,22 @@ Para autenticação segura, você precisará de um par de chaves privada e públ
 
     ```bash
     npm run test:watch
+    npm run test:cov
+    ```
     ```
 
- **Construa as imagens e inicie os contêineres:**
+## Executando a Aplicação
+- acesse a pasta /backend e digite
+    ```bash
+    npm run start:dev
 
+- acesse a pasta /front e digite
+    ```bash
+    npm run start
+
+## Executando a Aplicação DOCKER
+- acesse a pasta raiz
     ```bash
     docker-compose up
-    ```
+
+- Lembre-se de gerar as keysAccess antes
