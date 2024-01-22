@@ -86,6 +86,13 @@ const PostOrganismAndComments: React.FC<PostProps> = ({ post, onDelete, onEdit, 
   };
 
   const handleEditComment = (commentId: number) => {
+    const isCurrentUserCommentCreator = post._comments.some(comment => comment.id === commentId && comment.userId === userId);
+
+    if (!isCurrentUserCommentCreator) {
+      console.error('Você não tem permissão para editar este comentário.');
+      return;
+    }
+
     setIsEditingComment(true);
     setEditedComment(findCommentById(commentId)?.description || '');
     setCommentId(commentId);
@@ -97,6 +104,12 @@ const PostOrganismAndComments: React.FC<PostProps> = ({ post, onDelete, onEdit, 
         return;
       }
   
+      const isCurrentUserCommentCreator = post._comments.some(comment => comment.id === commentId && comment.userId === userId);
+
+      if (!isCurrentUserCommentCreator) {
+        console.error('Você não tem permissão para editar este comentário.');
+        return;
+      }
       await baseApi.put(`comments/update/${commentId}`, { description: editedComment });
       setIsEditingComment(false);
       window.location.reload();
