@@ -3,7 +3,7 @@ import { Posts } from '../entities/post';
 import { PostRepository } from '../repositories/post-repository';
 
 export interface ICreatePost {
-  userId: number;
+  userId: number | string;
   title: string;
   description: string;
   image?: Express.Multer.File;
@@ -26,6 +26,9 @@ export class CreatePost {
     dislikes,
   }: ICreatePost): Promise<Posts> {
     try {
+      const numericUserId =
+        typeof userId === 'number' ? userId : parseInt(userId, 10);
+
       let base64Image: string | undefined;
 
       if (image) {
@@ -33,7 +36,7 @@ export class CreatePost {
       }
 
       const newPost = new Posts({
-        userId,
+        userId: numericUserId,
         title,
         description,
         image: base64Image,

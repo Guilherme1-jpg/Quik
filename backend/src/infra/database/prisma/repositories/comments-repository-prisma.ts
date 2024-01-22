@@ -47,7 +47,7 @@ export class CommentRepositoryPrisma implements CommentRepository {
     try {
       const raw = CommentsMapperPrisma.toPrisma(comment);
 
-      if (raw.id) delete raw.id;
+      if (!raw.id) delete raw.id;
 
       const newComment = await this.prisma.comment.create({
         data: raw,
