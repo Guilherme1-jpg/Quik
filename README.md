@@ -89,7 +89,7 @@ Para autenticação segura, você precisará de um par de chaves privada e públ
     ```bash
     npm run start
 
-## Executando a Aplicação DOCKER
+## Executando a Aplicação DOCKER (opcional)
 - acesse a pasta raiz
     ```bash
     docker-compose up
