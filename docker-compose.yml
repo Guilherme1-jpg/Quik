@@ -21,8 +21,10 @@ services:
     ports:
       - '5432:5432'
     environment:
-      POSTGRES_PASSWORD: 'postgres'
+      POSTGRES_DB: 'quikdev'
+      POSTGRES_PASSWORD: '1234'
       POSTGRES_USER: 'postgres'
+      
     volumes:
       - './doc/backup:/docker-entrypoint-initdb.d/up.sql'
       - '/etc/backups/data-postgres/delliv-backend:/var/lib/postgresql/data'
