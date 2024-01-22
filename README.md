@@ -61,9 +61,9 @@ Para autenticação segura, você precisará de um par de chaves privada e públ
 
 3. **Metodo indicado:**
     Entre na pasta /backend via console e digite 
-       ```bash
+       
        node generateKeys.js
-     ```
+     
     será gerado ambas chaves na raiz da pasta,
     Adicione ambas chaves no diretório keysAccess.
 
